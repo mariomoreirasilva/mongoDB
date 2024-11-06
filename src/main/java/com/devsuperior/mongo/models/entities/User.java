@@ -18,6 +18,10 @@ public class User {
 	@DBRef(lazy = true) //fazendo referencia aos posts e o lazy é para não carregar a lista de post
 	public List<Post> posts = new ArrayList<>();
 	
+	public List<Post> getPosts() {
+		return posts;
+	}
+
 	public User(){
 		
 	}
