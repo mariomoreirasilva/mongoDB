@@ -51,6 +51,11 @@ public class UserService {
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
+	
+	public void apagarUser(String id) {
+		recuperaUserPorId(id); //se não der exceção vai para a linha abaixo
+		repository.deleteById(id);
+	}
 
 	private void copiaDTOparaEntidade(UserDTO dto, User entity) {
 		entity.setName(dto.getName());
