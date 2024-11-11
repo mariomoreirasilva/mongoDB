@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devsuperior.mongo.models.dto.PostDTO;
 import com.devsuperior.mongo.models.dto.UserDTO;
 import com.devsuperior.mongo.models.entities.User;
 import com.devsuperior.mongo.repositories.UserRepository;
@@ -55,6 +56,11 @@ public class UserService {
 	public void apagarUser(String id) {
 		recuperaUserPorId(id); //se não der exceção vai para a linha abaixo
 		repository.deleteById(id);
+	}
+	
+	public List<PostDTO> buscaPostUser(String id){
+		User user = recuperaUserPorId(id);
+		return user.getPosts().stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
 	}
 
 	private void copiaDTOparaEntidade(UserDTO dto, User entity) {
