@@ -34,4 +34,15 @@ public class PostController {
 	}
 
 	
+	@GetMapping(value="/fullsearch")
+	public ResponseEntity<List<PostDTO>> buscaCompleta(
+			@RequestParam(value = "text", defaultValue = "") String texto,
+			@RequestParam(value = "start", defaultValue = "") String dataIni,
+			@RequestParam(value = "end", defaultValue = "") String dataFim){
+		
+		List<PostDTO> lista = service.buscaCompleta(texto, dataIni, dataFim);
+		return ResponseEntity.ok().body(lista);
+	}
+
+	
 }
