@@ -32,7 +32,8 @@ public class PostService {
 	}
 	
 	public List<PostDTO> procurarPorTexto(String texto){
-		List<Post> lista = repository.findByTitleContainingIgnoreCase(texto);
+		//List<Post> lista = repository.findByTitleContainingIgnoreCase(texto);
+		List<Post> lista = repository.ProcurarTexto(texto);
 		return lista.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
 	}
 
